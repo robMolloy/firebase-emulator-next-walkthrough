@@ -48,12 +48,14 @@ NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true
 
 ### command line
 
-`NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true next dev`
+```
+NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true next dev
+```
 
 ### package.json
 
 ```
-    "dev:local": "NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true next dev"
+"dev:local": "NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true next dev"
 ```
 
 ## Firestore rules
