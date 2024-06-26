@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "firebase:init": "firebase init",
-    "firebase:emulators-start": "firebase emulators:start"
+    "firebase:emulators-start": "firebase emulators:start",
+    "firebase:deploy-rules": "firebase deploy --only firestore:rules",
+    "dev:local": "NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true next dev"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.13",

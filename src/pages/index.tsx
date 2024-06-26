@@ -17,7 +17,6 @@ export default function Home() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log(user);
       const isSignedInInternal = !!user?.uid;
       setIsSignedIn(isSignedInInternal);
       setUser(user ? user : undefined);
@@ -44,7 +43,7 @@ export default function Home() {
             <button
               className="btn btn-primary"
               onClick={async () => {
-                const userCredential = await signInWithEmailAndPassword(
+                await signInWithEmailAndPassword(
                   auth,
                   "robmolloy@hotmail.co.uk",
                   "robmolloy@hotmail.co.uk"
