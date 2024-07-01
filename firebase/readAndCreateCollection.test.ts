@@ -1,5 +1,3 @@
-import { readFileSync } from "fs";
-import path from "path";
 import {
   RulesTestEnvironment,
   assertFails,
@@ -17,8 +15,10 @@ import {
   setDoc,
   setLogLevel,
 } from "firebase/firestore";
+import { readFileSync } from "fs";
+import path from "path";
 
-export async function expectFirestorePermissionDenied(promise: Promise<any>) {
+async function expectFirestorePermissionDenied(promise: Promise<any>) {
   const errorResult = await assertFails(promise);
   expect(errorResult.code).toBe("permission-denied" || "PERMISSION_DENIED");
 }
@@ -56,8 +56,7 @@ describe("firestore rules for a readAndCreateCollection", () => {
     });
 
     const docRef = doc(unauthedDb, "someRandomCollection", "id1");
-    const errorResult = await assertFails(getDoc(docRef));
-    expect(errorResult.code).toBe("permission-denied" || "PERMISSION_DENIED");
+    expectFirestorePermissionDenied(getDoc(docRef));
   });
 
   it("should allow a get from a readAndCreateCollection", async () => {
