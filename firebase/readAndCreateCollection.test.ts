@@ -1,4 +1,5 @@
 import { readFileSync } from "fs";
+import path from "path";
 import {
   RulesTestEnvironment,
   assertFails,
@@ -7,14 +8,13 @@ import {
 } from "@firebase/rules-unit-testing";
 import {
   addDoc,
-  where,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
   query,
   setDoc,
-  deleteDoc,
   setLogLevel,
 } from "firebase/firestore";
 
@@ -29,7 +29,7 @@ const getTestEnvironment = async () =>
   initializeTestEnvironment({
     projectId: "my-project",
     firestore: {
-      rules: readFileSync("firestore.rules", "utf8"),
+      rules: readFileSync(path.resolve(__dirname, "./firestore.rules"), "utf8"),
       host: "127.0.0.1",
       port: 8080,
     },
