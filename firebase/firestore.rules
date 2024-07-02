@@ -22,6 +22,10 @@ service cloud.firestore {
     function getUserData(uid){
       return get(/databases/$(database)/documents/users/$(uid)).data;
     }
+    function getChatGroupData(chatGroupId){
+      return get(/databases/$(database)/documents/chatGroups/$(chatGroupId)).data;
+    }
+
 
 		match /readAndCreateCollection/{id} {
       allow get: if true;
@@ -32,6 +36,13 @@ service cloud.firestore {
     }
 		match /readIfUserIsAdminAndOwnerCollection/{id} {
       allow read: if userOwnsExistingDoc() && getUserData(incomingAuth().uid).isAdmin;
+    }
+    
+    match /readWriteIfUserIsInChatGroup/{id} {
+      allow create: if userOwnsIncomingDoc() && incomingAuth().uid in getChatGroupData(incomingData().chatGroupId).userIds;
+    }
+    match /chatGroups/{id} {
+      allow write: if true;
     }
   }
 }
