@@ -41,8 +41,9 @@ service cloud.firestore {
     match /readWriteIfUserIsInChatGroup/{id} {
       allow create: if userOwnsIncomingDoc() && incomingAuth().uid in getChatGroupData(incomingData().chatGroupId).userIds;
     }
+
     match /chatGroups/{id} {
-      allow write: if true;
+      allow create: if incomingAuth().uid in incomingData().userIds;
     }
   }
 }

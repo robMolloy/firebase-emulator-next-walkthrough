@@ -17,7 +17,7 @@ let testEnv: RulesTestEnvironment;
 
 const getTestEnvironment = async () =>
   initializeTestEnvironment({
-    projectId: "my-readWriteIfUserIsInChatGroup-project",
+    projectId: "my-project",
     firestore: {
       rules: readFileSync(path.resolve(__dirname, "./firestore.rules"), "utf8"),
       host: "127.0.0.1",
@@ -53,18 +53,8 @@ describe("firestore rules for a readWriteIfUserIsInChatGroup", () => {
     const collectionName = "readWriteIfUserIsInChatGroup";
     const myUid = "id_logged_in_my_user";
     const friendUid = "id_logged_in_friend_user";
-    const outsiderUid = "id_logged_in_outsider";
     const chatGroupId = "id_chat_group";
     const myAuthedDb = testEnv.authenticatedContext(myUid).firestore();
-
-    // await testEnv.withSecurityRulesDisabled(async (context) => {
-    //   const db = context.firestore();
-    //   const chatDocRef = doc(db, collectionName, "chatId1");
-    //   const chatGroupRef = doc(db, "chatGroup", chatGroupId);
-
-    //   await setDoc(chatDocRef, { content: "lorem", chatGroupId, uid: myUid });
-    //   await setDoc(chatGroupRef, { userIds: [myUid, friendUid] });
-    // });
 
     const chatDocRef = doc(myAuthedDb, collectionName, "chatId1");
     const chatGroupRef = doc(myAuthedDb, "chatGroups", chatGroupId);
@@ -75,4 +65,3 @@ describe("firestore rules for a readWriteIfUserIsInChatGroup", () => {
     );
   });
 });
-//
