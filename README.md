@@ -60,4 +60,10 @@ NEXT_PUBLIC_USE_FIREBASE_EMULATOR=true next dev
 
 ## Firestore rules
 
+### deploy
+
 Firestore rules will update when `firestore.rules` is edited and saved. To deploy use the command `firebase deploy --only firestore:rules`.
+
+### examples
+
+Some examples are shown within the firebase folder that can be found in the root directory
