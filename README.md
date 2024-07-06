@@ -1,8 +1,11 @@
 # Firebase emulator
 
-## Reference repo
+## Reference
 
-The relevant commands are available in the `package.json` scripts section and generally the most helpful information can be found at https://firebase.google.com/docs/emulator-suite.
+The relevant commands are available in the `package.json` scripts section. Relevant docs and info can be found in the following links
+
+- https://firebase.google.com/docs/emulator-suite (the docs)
+- https://www.youtube.com/watch?v=qbd_4LT0Y4s (data types - part of an excellent series)
 
 ## Setup
 
